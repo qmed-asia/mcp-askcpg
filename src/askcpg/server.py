@@ -25,10 +25,24 @@ async def get_cpg_context(input_queries: str) -> str:
         input_queries: user query to get the context from the medical books.
     """
     print("Input Queries:", input_queries)
-    
 
-    # Join all formatted chunks from all namespaces into a single string
-    context = ''.join("" + chunk for chunk in input_queries.split("\n") if chunk.strip())
+    url = f"{ASKCPG_BACKEND}/v4/cpg/mcp_context_reply"
+    
+    # Build the payload and headers with the required API key.
+    payload = {"query": input_queries}
+    headers = {"x-api-key": ASKCPG_API_KEY}
+    
+    async with httpx.AsyncClient() as client:
+        response = await client.post(url, json=payload, headers=headers)
+    
+    # Check for a successful response.
+    if response.status_code != 200:
+        raise Exception(f"Request failed: {response.status_code} - {response.text}")
+    
+    data = response.json()
+    context = data.get("context", "")
+    print("Context:", context)
+    # Return the context as a string.
     return context
 
 
