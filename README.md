@@ -1,0 +1,1 @@
+How to publish: learn from https://medium.com/@blackary/publishing-a-python-package-from-github-to-pypi-in-2024-a6fb8635d45d
