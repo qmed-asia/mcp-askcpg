@@ -14,9 +14,6 @@ ASKCPG_API_KEY = os.getenv("ASKCPG_API_KEY")
 ASKCPG_BACKEND = os.getenv("ASKCPG_BACKEND")
 
 
-
-
-
 @mcp.tool()
 async def get_cpg_context(input_queries: str) -> str:
     """Get context from medical clinical practice guideline books based on user query.

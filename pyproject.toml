@@ -1,7 +1,7 @@
 [project]
 name = "mcp-askcpg"
 version = "0.1.0"
-description = "Add your description here"
+description = "This is a MCP tools for connecting to Qmed Copilot askCPG feature, where it enable your LLM to get the medical knowledge from Malaysia Clinical Practice Guideline."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -18,3 +18,6 @@ askcpg = "askcpg:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/askcpg"]
+
+[project.urls]
+Homepage = "https://qmed.asia"
