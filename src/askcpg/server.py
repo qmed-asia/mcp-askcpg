@@ -2,8 +2,9 @@ from typing import Any
 import httpx
 from mcp.server.fastmcp import FastMCP
 import os
-import json
-
+import requests
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 # Initialize FastMCP server
 mcp = FastMCP("askcpg")
 
@@ -29,18 +30,23 @@ async def get_cpg_context(input_queries: str) -> str:
     payload = {"query": input_queries}
     headers = {"x-api-key": ASKCPG_API_KEY}
     
-    async with httpx.AsyncClient() as client:
-        response = await client.post(url, json=payload, headers=headers)
-    
+    response = requests.post(
+        url,
+        headers=headers,
+        json=payload,
+    )
     # Check for a successful response.
     if response.status_code != 200:
         raise Exception(f"Request failed: {response.status_code} - {response.text}")
+
     
     data = response.json()
-    context = data.get("context", "")
-    print("Context:", context)
     # Return the context as a string.
-    return context
+    return {
+        "context": response.json(),
+        "query": input_queries,
+        "status": "success",
+    }
 
 
 if __name__ == "__main__":
