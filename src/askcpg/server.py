@@ -49,6 +49,9 @@ async def get_cpg_context(input_queries: str) -> str:
     }
 
 
-if __name__ == "__main__":
-    # Initialize and run the server
+def main():
     mcp.run(transport='stdio')
+
+
+if __name__ == "__main__":
+    main()

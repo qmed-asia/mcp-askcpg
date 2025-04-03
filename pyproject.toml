@@ -1,6 +1,6 @@
 [project]
 name = "mcp-askcpg"
-version = "0.1.4"
+version = "0.1.5"
 description = "This is a MCP tools for connecting to Qmed Copilot askCPG feature, where it enable your LLM to get the medical knowledge from Malaysia Clinical Practice Guideline."
 readme = "README.md"
 requires-python = ">=3.11"
